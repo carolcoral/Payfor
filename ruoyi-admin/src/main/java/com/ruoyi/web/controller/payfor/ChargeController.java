@@ -28,7 +28,6 @@ public class ChargeController {
     @Autowired
     private ChargeService chargeService;
 
-    @PreAuthorize("@ss.hasPermi('pay:charge:create')")
     @PostMapping(value = "/create")
     public BaseResult<String> create(@RequestBody PayforVO payforVO) {
         BaseResult<String> baseResult = new BaseResult<>();
