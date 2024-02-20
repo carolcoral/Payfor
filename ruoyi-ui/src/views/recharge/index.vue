@@ -198,7 +198,9 @@ export default {
     getList() {
       this.loading = true;
       fetchList(this.addDateRange(this.queryParams, this.dateRange)).then(response => {
-          this.tableList = response.data;
+        console.log("response")
+        console.log(response)
+          this.tableList = response.data.data;
           this.total = response.data.total;
           this.loading = false;
         }

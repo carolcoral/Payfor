@@ -68,7 +68,7 @@ export const constantRoutes = [
     children: [
       {
         path: 'index',
-        component: () => import('@/views/charge/index.vue'),
+        component: () => import('@/views/recharge/index.vue'),
         name: 'Index',
         meta: { title: '首页', icon: 'dashboard', affix: true }
       }
@@ -110,7 +110,7 @@ export const constantRoutes = [
     children: [
       {
         path: 'recharge',
-        component: () => import('@/views/recharge/charge.vue'),
+        component: () => import('@/views/recharge/index.vue'),
         name: 'ChargeTable',
         meta: { title: '充值表格', icon: 'table' }
       }
