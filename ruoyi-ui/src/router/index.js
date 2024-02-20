@@ -68,7 +68,7 @@ export const constantRoutes = [
     children: [
       {
         path: 'index',
-        component: () => import('@/views/index'),
+        component: () => import('@/views/charge/index.vue'),
         name: 'Index',
         meta: { title: '首页', icon: 'dashboard', affix: true }
       }
@@ -85,6 +85,34 @@ export const constantRoutes = [
         component: () => import('@/views/system/user/profile/index'),
         name: 'Profile',
         meta: { title: '个人中心', icon: 'user' }
+      }
+    ]
+  },
+  {
+    path: '/charge',
+    component: Layout,
+    hidden: true,
+    redirect: 'noredirect',
+    children: [
+      {
+        path: 'charge',
+        component: () => import('@/views/charge/index'),
+        name: 'Charge',
+        meta: { title: '充值', icon: 'table' }
+      }
+    ]
+  },
+  {
+    path: '/recharge',
+    component: Layout,
+    hidden: true,
+    redirect: 'noredirect',
+    children: [
+      {
+        path: 'recharge',
+        component: () => import('@/views/recharge/charge.vue'),
+        name: 'ChargeTable',
+        meta: { title: '充值表格', icon: 'table' }
       }
     ]
   }
