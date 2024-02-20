@@ -34,8 +34,8 @@ public interface PayforMapper {
     @Select({"select * from payfort order by id desc limit #{startIndex},#{pageSize}"})
     int selectCount();
 
-    @Insert({"INSERT INTO payfor_dev.payfort (id, chargeAccount, chargeType, chargeCardNumber, chargeCardSecret, createDate, primaryUuid) " +
-            "VALUES (generated, #{chargeAccount}, #{chargeType}, #{chargeCardNumber}, #{chargeCardSecret}, #{createDate}, #{primaryUuid})"})
+    @Insert({"INSERT INTO payfor_dev.payfort (chargeAccount, chargeType, chargeCardNumber, chargeCardSecret, createDate, primaryUuid) " +
+            "VALUES (#{chargeAccount}, #{chargeType}, #{chargeCardNumber}, #{chargeCardSecret}, #{createDate}, #{primaryUuid})"})
     int insert(@Param("chargeAccount") String chargeAccount,
                @Param("chargeType") String chargeType,
                @Param("chargeCardNumber") String chargeCardNumber,
