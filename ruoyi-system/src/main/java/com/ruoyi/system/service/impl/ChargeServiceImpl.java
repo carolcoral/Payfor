@@ -36,8 +36,8 @@ public class ChargeServiceImpl implements ChargeService {
     public List<ChargeVO> listPayfor(String filter, int page, int pageSize) {
         List<ChargeVO> chargeVOS = new ArrayList<>();
         List<PayforEntity> payforEntities = new ArrayList<>();
-        int startIndex = page * pageSize;
-        if (StringUtils.isEmpty(filter)){
+        int startIndex = (page-1) * pageSize;
+        if (StringUtils.isNotEmpty(filter)){
             payforEntities = payforMapper.selectListByFilter(filter, startIndex, pageSize);
         }else {
             payforEntities = payforMapper.selectList(startIndex, pageSize);
@@ -61,7 +61,7 @@ public class ChargeServiceImpl implements ChargeService {
     @Override
     public Integer listTotal(String filter) {
         int total = 0;
-        if (StringUtils.isEmpty(filter)){
+        if (StringUtils.isNotEmpty(filter)){
             total = payforMapper.selectCountByFilter(filter);
         }else {
             total = payforMapper.selectCount();

@@ -131,16 +131,17 @@ public class ChargeController {
 
     @PreAuthorize("@ss.hasPermi('pay:charge:list')")
     @GetMapping(value = "/list")
-    public BaseResult<HashMap> listPayfor(@RequestBody String value) {
+    public BaseResult<HashMap> listPayfor(@RequestParam("pageNum") int pageNum,
+                                          @RequestParam("pageSize") int pageSize,
+                                          @RequestParam(value = "filter", required = false) String filter  ) {
         BaseResult<HashMap> baseResult = new BaseResult<>();
         baseResult.setCode(200);
         baseResult.setMessage("success");
         try {
-            JSONObject jsonObject = JSON.parseObject(value);
-            String filter = jsonObject.getString("filter");
-            int page = jsonObject.getIntValue("page");
-            int pageSize = jsonObject.getIntValue("pageSize");
-            List<ChargeVO> payforEntities = chargeService.listPayfor(filter, page, pageSize);
+            if (StringUtils.isEmpty(filter)) {
+                filter = "";
+            }
+            List<ChargeVO> payforEntities = chargeService.listPayfor(filter, pageNum, pageSize);
             Integer total = chargeService.listTotal(filter);
             HashMap<String, Object> map = new HashMap<>();
             map.put("data", payforEntities);

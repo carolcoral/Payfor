@@ -3,6 +3,7 @@ package com.ruoyi.system.domain.vo;
 import lombok.Data;
 import net.sf.jsqlparser.util.validation.metadata.DatabaseException;
 
+import java.util.Date;
 import java.util.List;
 
 @Data
@@ -18,7 +19,7 @@ public class ChargeVO {
     
     private String chargeCardSecret;
     
-    private DatabaseException createDate;
+    private Date createDate;
     
     private List<String> fileList;
 }

@@ -31,7 +31,7 @@ public interface PayforMapper {
             "   or chargeCardNumber like '%'+#{filter}+'%'"})
     int selectCountByFilter(@Param("filter") String filter);
 
-    @Select({"select * from payfort order by id desc limit #{startIndex},#{pageSize}"})
+    @Select({"select count(1) from payfort order by id desc"})
     int selectCount();
 
     @Insert({"INSERT INTO payfor_dev.payfort (chargeAccount, chargeType, chargeCardNumber, chargeCardSecret, createDate, primaryUuid) " +
