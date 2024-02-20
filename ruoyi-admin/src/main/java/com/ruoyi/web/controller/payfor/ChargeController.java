@@ -11,6 +11,7 @@ import com.ruoyi.system.service.ChargeService;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
@@ -26,7 +27,8 @@ public class ChargeController {
     
     @Autowired
     private ChargeService chargeService;
-    
+
+    @PreAuthorize("@ss.hasPermi('pay:charge:create')")
     @PostMapping(value = "/create")
     public BaseResult<String> create(@RequestBody PayforVO payforVO) {
         BaseResult<String> baseResult = new BaseResult<>();
@@ -127,7 +129,8 @@ public class ChargeController {
         
         
     }
-    
+
+    @PreAuthorize("@ss.hasPermi('pay:charge:list')")
     @GetMapping(value = "/list")
     public BaseResult<HashMap> listPayfor(@RequestBody String value) {
         BaseResult<HashMap> baseResult = new BaseResult<>();
