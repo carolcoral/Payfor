@@ -15,16 +15,15 @@ public interface PayforMapper {
     @Select({"<script>" +
                      "select *\n" +
                      "from payfort\n" +
-                     "where 1=1" +
-                     "<if test='filter != null and filter != \"\"'>" +
-                     " and (chargeAccount like \"%#{filter}%\" or chargeCardNumber like \"%#{filter}%\") " +
+                     "where 1=1\n" +
+                     "<if test='filter != null'>" +
+                     " and (chargeAccount like \"%#{filter}%\" or chargeCardNumber like \"%#{filter}%\") \n" +
                      "</if>" +
                      "<if test='beginTime != null and endTime != null'>" +
-                     " and (DATE_FORMAT(createDate, \"%Y-%m-%d\") <= #{endTime} and DATE_FORMAT(createDate, " +
-                     "\"%Y-%m-%d\")" +
-                     " >= #{beginTime})" +
+                     " and createDate between #{beginTime} and #{endTime}\n" +
                      "</if>" +
-                     " order by id desc limit #{startIndex},#{pageSize}" +
+                     " order by id desc\n" +
+                     " limit #{startIndex},#{pageSize}" +
                      "</script>"})
     List<PayforEntity> selectListByFilter(@Param("filter") String filter,
                                           @Param("startIndex") int startIndex,
@@ -33,15 +32,14 @@ public interface PayforMapper {
                                           @Param("endTime") String endTime);
     
     @Select({"<script>" +
-                     "select count(1)\n" +
+                     "select *\n" +
                      "from payfort\n" +
-                     "where 1=1" +
-                     "<if test='filter != null and filter != \"\"'>" +
-                     " and (chargeAccount like '%#{filter}%' or chargeCardNumber like '%#{filter}%') " +
+                     "where 1=1\n" +
+                     "<if test='filter != null'>" +
+                     " and (chargeAccount like \"%#{filter}%\" or chargeCardNumber like \"%#{filter}%\") \n" +
                      "</if>" +
                      "<if test='beginTime != null and endTime != null'>" +
-                     " and (DATE_FORMAT(createDate, '%Y-%m-%d') <= #{endTime} and DATE_FORMAT(createDate, '%Y-%m-%d')" +
-                     " >= #{beginTime})" +
+                     " and createDate between #{beginTime} and #{endTime}\n" +
                      "</if>" +
                      " order by id desc" +
                      "</script>"})

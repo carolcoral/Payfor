@@ -36,6 +36,7 @@ logging:
   level:
     com.ruoyi: debug
     org.springframework: info
+    org.mybatis: INFO
 
 # 用户配置
 user:
@@ -105,6 +106,9 @@ mybatis:
   mapperLocations: classpath*:mapper/**/*Mapper.xml
   # 加载全局的配置文件
   configLocation: classpath:mybatis/mybatis-config.xml
+  #org.apache.ibatis.logging.stdout.StdOutImpl日志只会打印到控制台
+  #org.apache.ibatis.logging.slf4j.Slf4jIml会把日志打印到指定log文件
+  configLocation.log-impl: org.apache.ibatis.logging.slf4j.Slf4jImpl
 
 # 默认mybatis配置
 #mybatis-plus:
