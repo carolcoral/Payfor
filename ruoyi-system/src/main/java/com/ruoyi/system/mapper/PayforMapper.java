@@ -17,13 +17,13 @@ public interface PayforMapper {
                      "from payfort\n" +
                      "where 1=1\n" +
                      "<if test='filter != null and filter != \"\"'>" +
-                     " and (chargeAccount like \"%#{filter}%\" or chargeCardNumber like \"%#{filter}%\") \n" +
+                     " and (chargeAccount like #{filter} or chargeCardNumber like #{filter})\n" +
                      "</if>" +
                      "<if test='beginTime != null and endTime != null'>" +
                      " and createDate between #{beginTime} and #{endTime}\n" +
                      "</if>" +
                      " order by id desc\n" +
-                     " limit #{startIndex},#{pageSize}" +
+                     "<if test='startIndex != null'> limit #{startIndex},#{pageSize}</if>" +
                      "</script>"})
     List<PayforEntity> selectListByFilter(@Param("filter") String filter,
                                           @Param("startIndex") int startIndex,
@@ -36,7 +36,7 @@ public interface PayforMapper {
                      "from payfort\n" +
                      "where 1=1\n" +
                      "<if test='filter != null and filter != \"\"'>" +
-                     " and (chargeAccount like \"%#{filter}%\" or chargeCardNumber like \"%#{filter}%\") \n" +
+                     " and (chargeAccount like #{filter} or chargeCardNumber like #{filter})\n" +
                      "</if>" +
                      "<if test='beginTime != null and endTime != null'>" +
                      " and createDate between #{beginTime} and #{endTime}\n" +
