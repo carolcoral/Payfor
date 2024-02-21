@@ -16,7 +16,7 @@ public interface PayforMapper {
                      "select *\n" +
                      "from payfort\n" +
                      "where 1=1\n" +
-                     "<if test='filter != null'>" +
+                     "<if test='filter != null and filter != \"\"'>" +
                      " and (chargeAccount like \"%#{filter}%\" or chargeCardNumber like \"%#{filter}%\") \n" +
                      "</if>" +
                      "<if test='beginTime != null and endTime != null'>" +
@@ -35,7 +35,7 @@ public interface PayforMapper {
                      "select count(1)\n" +
                      "from payfort\n" +
                      "where 1=1\n" +
-                     "<if test='filter != null'>" +
+                     "<if test='filter != null and filter != \"\"'>" +
                      " and (chargeAccount like \"%#{filter}%\" or chargeCardNumber like \"%#{filter}%\") \n" +
                      "</if>" +
                      "<if test='beginTime != null and endTime != null'>" +
