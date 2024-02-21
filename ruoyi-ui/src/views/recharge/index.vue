@@ -137,6 +137,19 @@
     <import-table ref="import" @ok="handleQuery" />
   </div>
 </template>
+<style>
+@media (max-width: 768px) {
+  .el-date-range-picker .el-picker-panel__body {
+    min-width: 100%;
+  }
+  .el-date-range-picker__content{
+    width: 100% !important;
+  }
+  .el-date-range-picker{
+    width: 100% !important;
+  }
+}
+</style>
 
 <script>
 import { fetchList } from "@/api/charge/article";
@@ -150,7 +163,7 @@ hljs.registerLanguage("javascript", require("highlight.js/lib/languages/javascri
 hljs.registerLanguage("sql", require("highlight.js/lib/languages/sql"));
 
 export default {
-  name: "Gen",
+  name: "index",
   components: { },
   data() {
     return {
