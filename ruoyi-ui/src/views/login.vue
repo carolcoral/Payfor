@@ -72,8 +72,8 @@ export default {
     return {
       codeUrl: "",
       loginForm: {
-        username: "admin",
-        password: "admin123",
+        username: "username",
+        password: "password",
         rememberMe: false,
         code: "",
         uuid: ""
@@ -141,7 +141,7 @@ export default {
             Cookies.remove('rememberMe');
           }
           this.$store.dispatch("Login", this.loginForm).then(() => {
-            this.$router.push({ path: this.redirect || "/" }).catch(()=>{});
+            this.$router.push({ path: this.redirect || "/index" }).catch(()=>{});
           }).catch(() => {
             this.loading = false;
             if (this.captchaEnabled) {
