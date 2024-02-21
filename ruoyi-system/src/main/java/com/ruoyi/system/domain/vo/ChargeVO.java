@@ -19,7 +19,7 @@ public class ChargeVO {
     
     private String chargeCardSecret;
     
-    private Date createDate;
+    private String createDate;
     
     private List<String> fileList;
 }

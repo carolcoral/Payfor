@@ -133,7 +133,9 @@ public class ChargeController {
     @GetMapping(value = "/list")
     public BaseResult<HashMap> listPayfor(@RequestParam("pageNum") int pageNum,
                                           @RequestParam("pageSize") int pageSize,
-                                          @RequestParam(value = "filter", required = false) String filter  ) {
+                                          @RequestParam(value = "filter", required = false) String filter,
+                                          @RequestParam(value = "params[beginTime]", required = false) String beginTime,
+                                          @RequestParam(value = "params[endTime]", required = false) String endTime) {
         BaseResult<HashMap> baseResult = new BaseResult<>();
         baseResult.setCode(200);
         baseResult.setMessage("success");
@@ -141,8 +143,8 @@ public class ChargeController {
             if (StringUtils.isEmpty(filter)) {
                 filter = "";
             }
-            List<ChargeVO> payforEntities = chargeService.listPayfor(filter, pageNum, pageSize);
-            Integer total = chargeService.listTotal(filter);
+            List<ChargeVO> payforEntities = chargeService.listPayfor(filter, pageNum, pageSize, beginTime, endTime);
+            Integer total = chargeService.listTotal(filter, beginTime, endTime);
             HashMap<String, Object> map = new HashMap<>();
             map.put("data", payforEntities);
             map.put("total", total);
