@@ -26,51 +26,51 @@
       </el-form-item>
     </el-form>
 
-<!--    <el-row :gutter="10" class="mb8">-->
-<!--      <el-col :span="1.5">-->
-<!--        <el-button-->
-<!--          type="primary"-->
-<!--          plain-->
-<!--          icon="el-icon-download"-->
-<!--          size="mini"-->
-<!--          @click="handleGenTable"-->
-<!--          v-hasPermi="['tool:gen:code']"-->
-<!--        >生成</el-button>-->
-<!--      </el-col>-->
-<!--      <el-col :span="1.5">-->
-<!--        <el-button-->
-<!--          type="info"-->
-<!--          plain-->
-<!--          icon="el-icon-upload"-->
-<!--          size="mini"-->
-<!--          @click="openImportTable"-->
-<!--          v-hasPermi="['tool:gen:import']"-->
-<!--        >导入</el-button>-->
-<!--      </el-col>-->
-<!--      <el-col :span="1.5">-->
-<!--        <el-button-->
-<!--          type="success"-->
-<!--          plain-->
-<!--          icon="el-icon-edit"-->
-<!--          size="mini"-->
-<!--          :disabled="single"-->
-<!--          @click="handleEditTable"-->
-<!--          v-hasPermi="['tool:gen:edit']"-->
-<!--        >修改</el-button>-->
-<!--      </el-col>-->
-<!--      <el-col :span="1.5">-->
-<!--        <el-button-->
-<!--          type="danger"-->
-<!--          plain-->
-<!--          icon="el-icon-delete"-->
-<!--          size="mini"-->
-<!--          :disabled="multiple"-->
-<!--          @click="handleDelete"-->
-<!--          v-hasPermi="['tool:gen:remove']"-->
-<!--        >删除</el-button>-->
-<!--      </el-col>-->
-<!--      <right-toolbar :showSearch.sync="showSearch" @queryTable="getList"></right-toolbar>-->
-<!--    </el-row>-->
+    <!--    <el-row :gutter="10" class="mb8">-->
+    <!--      <el-col :span="1.5">-->
+    <!--        <el-button-->
+    <!--          type="primary"-->
+    <!--          plain-->
+    <!--          icon="el-icon-download"-->
+    <!--          size="mini"-->
+    <!--          @click="handleGenTable"-->
+    <!--          v-hasPermi="['tool:gen:code']"-->
+    <!--        >生成</el-button>-->
+    <!--      </el-col>-->
+    <!--      <el-col :span="1.5">-->
+    <!--        <el-button-->
+    <!--          type="info"-->
+    <!--          plain-->
+    <!--          icon="el-icon-upload"-->
+    <!--          size="mini"-->
+    <!--          @click="openImportTable"-->
+    <!--          v-hasPermi="['tool:gen:import']"-->
+    <!--        >导入</el-button>-->
+    <!--      </el-col>-->
+    <!--      <el-col :span="1.5">-->
+    <!--        <el-button-->
+    <!--          type="success"-->
+    <!--          plain-->
+    <!--          icon="el-icon-edit"-->
+    <!--          size="mini"-->
+    <!--          :disabled="single"-->
+    <!--          @click="handleEditTable"-->
+    <!--          v-hasPermi="['tool:gen:edit']"-->
+    <!--        >修改</el-button>-->
+    <!--      </el-col>-->
+    <!--      <el-col :span="1.5">-->
+    <!--        <el-button-->
+    <!--          type="danger"-->
+    <!--          plain-->
+    <!--          icon="el-icon-delete"-->
+    <!--          size="mini"-->
+    <!--          :disabled="multiple"-->
+    <!--          @click="handleDelete"-->
+    <!--          v-hasPermi="['tool:gen:remove']"-->
+    <!--        >删除</el-button>-->
+    <!--      </el-col>-->
+    <!--      <right-toolbar :showSearch.sync="showSearch" @queryTable="getList"></right-toolbar>-->
+    <!--    </el-row>-->
 
     <el-table v-loading="loading" :data="tableList">
       <el-table-column
@@ -103,8 +103,9 @@
               placeholder="请输入内容"
               v-model="row.chargeCardSecret"
               :disabled="false"
-            type="password"
-            show-password>
+              type="password"
+              show-password
+            >
             </el-input>
           </div>
         </template>
@@ -149,7 +150,7 @@
       :limit.sync="queryParams.pageSize"
       @pagination="getList"
     />
-    <import-table ref="import" @ok="handleQuery" />
+    <import-table ref="import" @ok="handleQuery"/>
   </div>
 </template>
 <style>
@@ -157,35 +158,38 @@
   .el-date-range-picker .el-picker-panel__body {
     min-width: 100%;
   }
-  .el-date-range-picker__content{
+
+  .el-date-range-picker__content {
     width: 100% !important;
   }
-  .el-date-range-picker{
+
+  .el-date-range-picker {
     width: 100% !important;
   }
 }
 </style>
 
 <script>
-import { fetchList } from "@/api/charge/article";
-import hljs from "highlight.js/lib/highlight";
-import "highlight.js/styles/github-gist.css";
-hljs.registerLanguage("java", require("highlight.js/lib/languages/java"));
-hljs.registerLanguage("xml", require("highlight.js/lib/languages/xml"));
-hljs.registerLanguage("html", require("highlight.js/lib/languages/xml"));
-hljs.registerLanguage("vue", require("highlight.js/lib/languages/xml"));
-hljs.registerLanguage("javascript", require("highlight.js/lib/languages/javascript"));
-hljs.registerLanguage("sql", require("highlight.js/lib/languages/sql"));
+import { fetchList } from '@/api/charge/article'
+import hljs from 'highlight.js/lib/highlight'
+import 'highlight.js/styles/github-gist.css'
+
+hljs.registerLanguage('java', require('highlight.js/lib/languages/java'))
+hljs.registerLanguage('xml', require('highlight.js/lib/languages/xml'))
+hljs.registerLanguage('html', require('highlight.js/lib/languages/xml'))
+hljs.registerLanguage('vue', require('highlight.js/lib/languages/xml'))
+hljs.registerLanguage('javascript', require('highlight.js/lib/languages/javascript'))
+hljs.registerLanguage('sql', require('highlight.js/lib/languages/sql'))
 
 export default {
-  name: "recharge",
-  components: { },
+  name: 'recharge',
+  components: {},
   data() {
     return {
       // 遮罩层
       loading: true,
       // 唯一标识符
-      uniqueId: "",
+      uniqueId: '',
       // 选中数组
       ids: [],
       // 选中表数组
@@ -201,50 +205,54 @@ export default {
       // 表数据
       tableList: [],
       // 日期范围
-      dateRange: "",
+      dateRange: '',
       // 查询参数
       queryParams: {
         pageNum: 1,
         pageSize: 10,
         filter: undefined
       }
-    };
+    }
   },
   created() {
-    this.getList();
+    this.getList()
   },
   activated() {
-    const time = this.$route.query.t;
+    const time = this.$route.query.t
     if (time != null && time != this.uniqueId) {
-      this.uniqueId = time;
-      this.queryParams.pageNum = Number(this.$route.query.pageNum);
-      this.getList();
+      this.uniqueId = time
+      this.queryParams.pageNum = Number(this.$route.query.pageNum)
+      this.getList()
     }
   },
   methods: {
     /** 查询表集合 */
     getList() {
-      this.loading = true;
+      this.loading = true
       fetchList(this.addDateRange(this.queryParams, this.dateRange)).then(response => {
-        console.log("response")
-        console.log(response)
-          this.tableList = response.data.data;
-          this.total = response.data.total;
-          this.loading = false;
+          console.log('response')
+          console.log(response)
+          this.tableList = response.data.data
+          this.total = response.data.total
+          this.loading = false
         }
-      );
+      )
     },
     /** 搜索按钮操作 */
     handleQuery() {
-      this.queryParams.pageNum = 1;
-      this.getList();
+      this.queryParams.pageNum = 1
+      this.getList()
     },
     /** 重置按钮操作 */
     resetQuery() {
-      this.dateRange = [];
-      this.resetForm("queryForm");
-      this.handleQuery();
+      this.dateRange = []
+      this.queryParams = {
+        pageNum: 1,
+        pageSize: 10,
+        filter: undefined
+      }
+      this.handleQuery()
     }
   }
-};
+}
 </script>
