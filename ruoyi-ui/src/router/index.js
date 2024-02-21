@@ -31,6 +31,10 @@ import Layout from '@/layout'
 // 公共路由
 export const constantRoutes = [
   {
+    path: '/',
+    redirect: '/charge'
+  },
+  {
     path: '/redirect',
     component: Layout,
     hidden: true,
@@ -68,7 +72,7 @@ export const constantRoutes = [
     children: [
       {
         path: 'index',
-        component: () => import('@/views/charge/index.vue'),
+        component: () => import('@/views/recharge/index.vue'),
         name: 'Index',
         meta: { title: '首页', icon: 'dashboard', affix: true }
       }
@@ -90,18 +94,23 @@ export const constantRoutes = [
   },
   {
     path: '/charge',
-    component: Layout,
-    hidden: true,
-    redirect: 'noredirect',
-    children: [
-      {
-        path: 'charge',
-        component: () => import('@/views/charge/index'),
-        name: 'Charge',
-        meta: { title: '充值', icon: 'table' }
-      }
-    ]
+    component: () => import('@/views/charge/index'),
+    hidden: true
   },
+  // {
+  //   path: '/charge',
+  //   component: Layout,
+  //   hidden: true,
+  //   redirect: 'noredirect',
+  //   children: [
+  //     {
+  //       path: 'charge',
+  //       component: () => import('@/views/charge/index'),
+  //       name: 'Charge',
+  //       meta: { title: '充值', icon: 'table' }
+  //     }
+  //   ]
+  // },
   {
     path: '/recharge',
     component: Layout,

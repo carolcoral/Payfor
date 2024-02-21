@@ -78,46 +78,61 @@
         align="center"
         prop="id"
         :show-overflow-tooltip="true"
-        width="120"
+        min-width="120"
+        sortable
       />
-      <el-table-column label="创建时间" align="center" prop="createDate" width="160" />
+      <el-table-column label="创建时间" align="center" prop="createDate" width="160" sortable/>
       <el-table-column
         label="卡号"
         align="center"
         prop="chargeCardNumber"
         :show-overflow-tooltip="true"
-        width="120"
+        min-width="120"
       />
       <el-table-column
         label="卡密"
         align="center"
         prop="chargeCardSecret"
         :show-overflow-tooltip="true"
-        width="120"
-      />
+        min-width="120"
+        type="password"
+      >
+        <template slot-scope="{row}">
+          <div class="demo-image__preview">
+            <el-input
+              placeholder="请输入内容"
+              v-model="row.chargeCardSecret"
+              :disabled="false"
+            type="password"
+            show-password>
+            </el-input>
+          </div>
+        </template>
+      </el-table-column>
       <el-table-column
         label="充值类型"
         align="center"
         prop="chargeType"
         :show-overflow-tooltip="true"
-        width="120"
+        min-width="120"
       />
       <el-table-column
         label="充值账户"
         align="center"
         prop="chargeAccount"
         :show-overflow-tooltip="true"
-        width="120"
+        min-width="120"
       />
       <el-table-column
         label="二维码图片(点击查看全部)"
         align="center"
         :show-overflow-tooltip="true"
-        width="120"
+        min-width="120"
       >
         <template slot-scope="{row}">
           <div class="demo-image__preview">
             <el-image
+              v-if="row.fileList[0] !== ''"
               style="width: 2.5rem; height: 2.5rem"
               :src="row.fileList[0]"
               :preview-src-list="row.fileList"
@@ -163,7 +178,7 @@ hljs.registerLanguage("javascript", require("highlight.js/lib/languages/javascri
 hljs.registerLanguage("sql", require("highlight.js/lib/languages/sql"));
 
 export default {
-  name: "index",
+  name: "recharge",
   components: { },
   data() {
     return {
