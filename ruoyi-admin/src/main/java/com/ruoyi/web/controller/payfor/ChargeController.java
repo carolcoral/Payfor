@@ -28,6 +28,7 @@ public class ChargeController {
     @Autowired
     private ChargeService chargeService;
 
+    @CrossOrigin(value = "*")
     @PostMapping(value = "/create")
     public BaseResult<String> create(@RequestBody PayforVO payforVO) {
         BaseResult<String> baseResult = new BaseResult<>();
@@ -129,7 +130,7 @@ public class ChargeController {
         
     }
 
-    @PreAuthorize("@ss.hasPermi('pay:charge:list')")
+//    @PreAuthorize("@ss.hasPermi('pay:charge:list')")
     @GetMapping(value = "/list")
     public BaseResult<HashMap> listPayfor(@RequestParam("pageNum") int pageNum,
                                           @RequestParam("pageSize") int pageSize,
