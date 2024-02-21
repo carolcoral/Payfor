@@ -134,13 +134,8 @@ export default {
         if (valid) {
           console.log(this.temp)
           createArticle(this.temp).then(() => {
-            this.list.unshift(this.temp)
-            this.$message({
-              message: '提交成功',
-              type: 'success',
-              duration: 2000
-            })
-            this.temp.clear()
+            this.$modal.msgSuccess("提交成功");
+            this.resetTemp()
           })
         }
       })
