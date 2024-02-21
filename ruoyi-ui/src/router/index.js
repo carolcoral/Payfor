@@ -96,34 +96,6 @@ export const constantRoutes = [
     path: '/charge',
     component: () => import('@/views/charge/index'),
     hidden: true
-  },
-  // {
-  //   path: '/charge',
-  //   component: Layout,
-  //   hidden: true,
-  //   redirect: 'noredirect',
-  //   children: [
-  //     {
-  //       path: 'charge',
-  //       component: () => import('@/views/charge/index'),
-  //       name: 'Charge',
-  //       meta: { title: '充值', icon: 'table' }
-  //     }
-  //   ]
-  // },
-  {
-    path: '/recharge',
-    component: Layout,
-    hidden: true,
-    redirect: 'noredirect',
-    children: [
-      {
-        path: 'recharge',
-        component: () => import('@/views/recharge/index.vue'),
-        name: 'ChargeTable',
-        meta: { title: '充值表格', icon: 'table' }
-      }
-    ]
   }
 ]
 
@@ -196,6 +168,20 @@ export const dynamicRoutes = [
         component: () => import('@/views/tool/gen/editTable'),
         name: 'GenEdit',
         meta: { title: '修改生成配置', activeMenu: '/tool/gen' }
+      }
+    ]
+  },
+  {
+    path: '/recharge',
+    component: Layout,
+    hidden: true,
+    redirect: 'noredirect',
+    children: [
+      {
+        path: 'recharge',
+        component: () => import('@/views/recharge/index.vue'),
+        name: 'ChargeTable',
+        meta: { title: '充值表格', icon: 'table' }
       }
     ]
   }
