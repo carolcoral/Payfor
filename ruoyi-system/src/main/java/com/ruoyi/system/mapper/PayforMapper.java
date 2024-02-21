@@ -32,7 +32,7 @@ public interface PayforMapper {
                                           @Param("endTime") String endTime);
     
     @Select({"<script>" +
-                     "select *\n" +
+                     "select count(1)\n" +
                      "from payfort\n" +
                      "where 1=1\n" +
                      "<if test='filter != null'>" +
