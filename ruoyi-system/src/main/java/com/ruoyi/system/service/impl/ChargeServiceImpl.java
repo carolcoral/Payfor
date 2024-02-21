@@ -1,6 +1,7 @@
 package com.ruoyi.system.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.ruoyi.common.utils.DateUtils;
 import com.ruoyi.system.domain.entity.FileListEntity;
 import com.ruoyi.system.domain.entity.PayforEntity;
 import com.ruoyi.system.domain.vo.ChargeVO;
@@ -20,36 +21,36 @@ import java.util.stream.Collectors;
 
 @Service
 public class ChargeServiceImpl implements ChargeService {
-
+    
     @Resource
     private FileListMapper fileListMapper;
-
+    
     @Resource
     private PayforMapper payforMapper;
-
+    
     @Override
     public int insertFile(FileListEntity fileListEntity) {
         return fileListMapper.insert(fileListEntity.getFileName(), fileListEntity.getFilePath(), fileListEntity.getPrimaryUuid());
     }
-
+    
     @Override
-    public List<ChargeVO> listPayfor(String filter, int page, int pageSize) {
+    public List<ChargeVO> listPayfor(String filter, int page, int pageSize, String beginTime, String endTime) {
         List<ChargeVO> chargeVOS = new ArrayList<>();
-        List<PayforEntity> payforEntities = new ArrayList<>();
-        int startIndex = (page-1) * pageSize;
-        if (StringUtils.isNotEmpty(filter)){
-            payforEntities = payforMapper.selectListByFilter(filter, startIndex, pageSize);
-        }else {
-            payforEntities = payforMapper.selectList(startIndex, pageSize);
+        int startIndex = (page - 1) * pageSize;
+        if (StringUtils.isNotEmpty(filter)) {
+            filter = "%" + filter + "%";
         }
+        List<PayforEntity> payforEntities = payforMapper.selectListByFilter(filter, startIndex, pageSize, beginTime, endTime);
+        // filList 组装
         for (PayforEntity payforEntity : payforEntities) {
             ChargeVO chargeVO = new ChargeVO();
             BeanUtils.copyProperties(payforEntity, chargeVO);
+            chargeVO.setCreateDate(DateUtils.parseDateToStr(DateUtils.YYYY_MM_DD_HH_MM_SS, payforEntity.getCreateDate()));
             String primaryUuid = payforEntity.getPrimaryUuid();
             List<FileListEntity> listEntities = fileListMapper.selectList(primaryUuid);
             if (listEntities.isEmpty()) {
                 chargeVO.setFileList(Collections.singletonList(""));
-            }else {
+            } else {
                 List<String> fileUrls = listEntities.stream().map(FileListEntity::getFilePath).collect(Collectors.toList());
                 chargeVO.setFileList(fileUrls);
             }
@@ -57,18 +58,15 @@ public class ChargeServiceImpl implements ChargeService {
         }
         return chargeVOS;
     }
-
+    
     @Override
-    public Integer listTotal(String filter) {
-        int total = 0;
-        if (StringUtils.isNotEmpty(filter)){
-            total = payforMapper.selectCountByFilter(filter);
-        }else {
-            total = payforMapper.selectCount();
+    public Integer listTotal(String filter, String beginTime, String endTime) {
+        if (StringUtils.isNotEmpty(filter)) {
+            filter = "%" + filter + "%";
         }
-        return total;
+        return payforMapper.selectCount(filter, beginTime, endTime);
     }
-
+    
     @Override
     public String createPayfor(List<PayforEntity> payforEntities) {
         Date date = new Date();

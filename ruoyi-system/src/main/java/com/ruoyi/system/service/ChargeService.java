@@ -13,8 +13,8 @@ public interface ChargeService {
 
     String createPayfor(List<PayforEntity> payforEntities);
     
-    List<ChargeVO> listPayfor(String filter, int page, int pageSize);
+    List<ChargeVO> listPayfor(String filter, int page, int pageSize, String beginTime, String endTime);
 
-    Integer listTotal(String filter);
+    Integer listTotal(String filter, String beginTime, String endTime);
 
 }
