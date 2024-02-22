@@ -74,7 +74,6 @@ service.interceptors.request.use(config => {
 // 响应拦截器
 service.interceptors.response.use(res => {
     // 未设置状态码则默认成功状态
-  console.log(res)
     let code = res.data.code || 200;
     if (res.status){
       code = 200

@@ -150,7 +150,6 @@
       :limit.sync="queryParams.pageSize"
       @pagination="getList"
     />
-    <import-table ref="import" @ok="handleQuery"/>
   </div>
 </template>
 <style>
@@ -171,15 +170,6 @@
 
 <script>
 import { fetchList } from '@/api/charge/article'
-import hljs from 'highlight.js/lib/highlight'
-import 'highlight.js/styles/github-gist.css'
-
-hljs.registerLanguage('java', require('highlight.js/lib/languages/java'))
-hljs.registerLanguage('xml', require('highlight.js/lib/languages/xml'))
-hljs.registerLanguage('html', require('highlight.js/lib/languages/xml'))
-hljs.registerLanguage('vue', require('highlight.js/lib/languages/xml'))
-hljs.registerLanguage('javascript', require('highlight.js/lib/languages/javascript'))
-hljs.registerLanguage('sql', require('highlight.js/lib/languages/sql'))
 
 export default {
   name: 'recharge',
@@ -230,8 +220,6 @@ export default {
     getList() {
       this.loading = true
       fetchList(this.addDateRange(this.queryParams, this.dateRange)).then(response => {
-          console.log('response')
-          console.log(response)
           this.tableList = response.data.data
           this.total = response.data.total
           this.loading = false
@@ -256,3 +244,9 @@ export default {
   }
 }
 </script>
+<style>
+.el-image img{
+  border: 1px solid red;
+  border-radius: 5px;
+}
+</style>
