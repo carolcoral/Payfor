@@ -122,7 +122,8 @@ export default {
       headers: {
         // 'Content-Type': 'application/json',
         'Authorization': 'Bearer 3|MHHlgGyBe2S63OvjffQf75yeIOLIdlVjl7yCWfOb',
-        'Accept': 'application/json'
+        'Accept': 'application/json',
+        'Content-Type': 'multipart/form-data'
       }
     }
   },
