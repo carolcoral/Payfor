@@ -63,18 +63,17 @@
             :before-upload="onBeforeUpload"
             :on-success="uploadSuccess"
             :headers="headers"
-            class="upload-demo"
+            class="upload-demo upload-ul"
             action="https://pic.xiaozhangstu.com/api/v1/upload"
             :file-list="temp.fileList"
             :auto-upload="true"
             multiple
             :limit="6"
             :on-exceed="handleExceed"
-            style="float: left;width: 100px;"
           >
             <el-button slot="trigger" size="small" type="primary" style="float: left">选取文件</el-button>
-            <div slot="tip" class="el-upload__tip" style="width: 230px; margin-left: -100px;">只能上传jpeg/jpg/png文件，且不超过 1Mb</div>
-            <div slot="tip" class="el-upload__tip" style="width: 230px; margin-left: -100px;">重新上传文件请刷新页面，移除图片无效</div>
+            <div slot="tip" class="el-upload__tip">只能上传jpeg/jpg/png文件，且不超过 1Mb</div>
+            <div slot="tip" class="el-upload__tip">重新上传文件请刷新页面，移除图片无效</div>
           </el-upload>
         </el-form-item>
         <el-form-item>
@@ -123,7 +122,7 @@ export default {
         // 'Content-Type': 'application/json',
         'Authorization': 'Bearer 3|MHHlgGyBe2S63OvjffQf75yeIOLIdlVjl7yCWfOb',
         'Accept': 'application/json',
-        'Content-Type': 'multipart/form-data'
+        // 'Content-Type': 'multipart/form-data'
       }
     }
   },
@@ -181,13 +180,11 @@ export default {
         var linkUrl = linksData.url
         var filename = response.data.name
         const fileJson = {
-          'filepath': linkUrl,
-          'filename': filename
+          'filePath': linkUrl,
+          'fileName': filename
         }
         var index = this.temp.fileList.length
         this.temp.fileList[index] = fileJson
-        console.log(fileJson)
-        console.log(this.temp)
       }
     }
   }
@@ -215,6 +212,10 @@ export default {
   width: 100%;
   height: 200px;
   margin-top: 1rem;
+}
+.upload-ul ul{
+  width: 80%;
+  margin: 0 auto 0;
 }
 </style>
 <style lang="scss" scoped>

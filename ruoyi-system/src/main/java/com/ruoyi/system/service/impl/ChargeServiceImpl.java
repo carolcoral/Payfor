@@ -30,6 +30,9 @@ public class ChargeServiceImpl implements ChargeService {
     
     @Override
     public int insertFile(FileListEntity fileListEntity) {
+        if (null == fileListEntity) {
+            return -1;
+        }
         return fileListMapper.insert(fileListEntity.getFileName(), fileListEntity.getFilePath(), fileListEntity.getPrimaryUuid());
     }
     
