@@ -49,7 +49,7 @@ public interface PayforMapper {
                     @Param("beginTime") String beginTime,
                     @Param("endTime") String endTime);
     
-    @Insert({"INSERT INTO payfor_dev.payfort (chargeAccount, chargeType, chargeCardNumber, chargeCardSecret, createDate, primaryUuid) " +
+    @Insert({"INSERT INTO payfort (chargeAccount, chargeType, chargeCardNumber, chargeCardSecret, createDate, primaryUuid) " +
                      "VALUES (#{chargeAccount}, #{chargeType}, #{chargeCardNumber}, #{chargeCardSecret}, #{createDate}, #{primaryUuid})"})
     @Options(useGeneratedKeys = true, keyColumn = "id")
     int insert(@Param("chargeAccount") String chargeAccount,
