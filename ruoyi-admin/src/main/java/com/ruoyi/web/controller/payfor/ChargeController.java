@@ -158,4 +158,20 @@ public class ChargeController {
         return baseResult;
     }
     
+    @PostMapping(value = "/clean")
+    public BaseResult<Boolean> clean() {
+        BaseResult<Boolean> baseResult = new BaseResult<>();
+        baseResult.setCode(200);
+        baseResult.setMessage("success");
+        try {
+            boolean cleaned = chargeService.cleanTable(null);
+            baseResult.setData(cleaned);
+        } catch (Exception e) {
+            log.error("遍历支付数据异常", e);
+            baseResult.setCode(500);
+            baseResult.setMessage("failed");
+        }
+        return baseResult;
+    }
+    
 }

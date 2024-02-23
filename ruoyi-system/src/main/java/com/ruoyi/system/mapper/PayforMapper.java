@@ -3,8 +3,10 @@ package com.ruoyi.system.mapper;
 import com.ruoyi.system.domain.entity.PayforEntity;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Options;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Update;
 
 import java.util.Date;
 import java.util.List;
@@ -49,10 +51,14 @@ public interface PayforMapper {
     
     @Insert({"INSERT INTO payfor_dev.payfort (chargeAccount, chargeType, chargeCardNumber, chargeCardSecret, createDate, primaryUuid) " +
                      "VALUES (#{chargeAccount}, #{chargeType}, #{chargeCardNumber}, #{chargeCardSecret}, #{createDate}, #{primaryUuid})"})
+    @Options(useGeneratedKeys = true, keyProperty = "id", keyColumn = "id")
     int insert(@Param("chargeAccount") String chargeAccount,
                @Param("chargeType") String chargeType,
                @Param("chargeCardNumber") String chargeCardNumber,
                @Param("chargeCardSecret") String chargeCardSecret,
                @Param("createDate") Date createDate,
                @Param("primaryUuid") String primaryUuid);
+    
+    @Update("truncate table payfort")
+    void truncateTable();
 }
