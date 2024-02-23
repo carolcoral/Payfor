@@ -171,7 +171,7 @@
 </style>
 
 <script>
-import { fetchList, truncate } from '@/api/charge/article'
+import {fetchList, truncate} from '@/api/charge/article'
 
 export default {
   name: 'recharge',
@@ -250,14 +250,14 @@ export default {
         type: 'error'
       }).then(() => {
         truncate().then(response => {
-          const code = response.code;
-          if (code === 200){
+            const code = response.code;
+            if (code === 200) {
               this.$message({
                 type: 'success',
                 message: '清除成功!'
               });
               this.getList();
-            }else {
+            } else {
               this.$message.error('错误！清除数据出现异常！');
             }
           }
@@ -273,7 +273,7 @@ export default {
 }
 </script>
 <style>
-.el-image img{
+.el-image img {
   border: 1px solid red;
   border-radius: 5px;
 }

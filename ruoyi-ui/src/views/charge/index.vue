@@ -133,8 +133,17 @@ export default {
       this.$refs['dataForm'].validate((valid) => {
         if (valid) {
           console.log(this.temp)
-          createArticle(this.temp).then(() => {
-            this.$modal.msgSuccess("提交成功");
+          createArticle(this.temp).then((response) => {
+            const code = response.code;
+            if (code === 200) {
+              this.$message({
+                type: 'success',
+                message: '提交成功!'
+              });
+              this.getList();
+            } else {
+              this.$message.error('错误！提交数据出现异常！');
+            }
             this.resetTemp()
           })
         }
@@ -213,7 +222,8 @@ export default {
   height: 200px;
   margin-top: 1rem;
 }
-.upload-ul ul{
+
+.upload-ul ul {
   width: 80%;
   margin: 0 auto 0;
 }
