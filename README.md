@@ -7,4 +7,4 @@
 ## v1.0.1
 * date-end: 2024-03-01
 * desc: 
-  * ![新增表格页清除按钮](https://gitea.cnkj.site/365/RuoYi-Vue/issues/1)
+  * [新增表格页清除按钮](https://gitea.cnkj.site/365/RuoYi-Vue/issues/1)
