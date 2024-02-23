@@ -16,7 +16,7 @@ public interface FileListMapper {
     @Select({"select * from filelist where primaryUuid = #{primaryUuid}"})
     List<FileListEntity> listFiles(@Param("primaryUuid") String primaryUuid);
     
-    @Insert({"INSERT INTO payfor_dev.filelist (fileName, filePath, primaryUuid) VALUES (#{filename}, #{filepath}, #{primaryUuid})"})
+    @Insert({"INSERT INTO filelist (fileName, filePath, primaryUuid) VALUES (#{filename}, #{filepath}, #{primaryUuid})"})
     @Options(useGeneratedKeys = true, keyColumn = "id")
     int insert(@Param("filename") String filename, @Param("filepath") String filepath, @Param("primaryUuid") String primaryUuid);
     
