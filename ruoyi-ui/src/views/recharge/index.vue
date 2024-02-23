@@ -23,6 +23,8 @@
       <el-form-item>
         <el-button type="primary" icon="el-icon-search" size="mini" @click="handleQuery">搜索</el-button>
         <el-button icon="el-icon-refresh" size="mini" @click="resetQuery">重置</el-button>
+        <el-button type="danger" icon="el-icon-delete" size="mini" @click="truncateData">数据清除</el-button>
+
       </el-form-item>
     </el-form>
 
@@ -169,7 +171,7 @@
 </style>
 
 <script>
-import { fetchList } from '@/api/charge/article'
+import { fetchList, truncate } from '@/api/charge/article'
 
 export default {
   name: 'recharge',
@@ -240,6 +242,32 @@ export default {
         filter: undefined
       }
       this.handleQuery()
+    },
+    truncateData() {
+      this.$confirm('此操作将永久清空全部数据, 是否继续?', '提示', {
+        confirmButtonText: '确定',
+        cancelButtonText: '取消',
+        type: 'error'
+      }).then(() => {
+        truncate().then(response => {
+          const code = response.code;
+          if (code === 200){
+              this.$message({
+                type: 'success',
+                message: '清除成功!'
+              });
+              this.getList();
+            }else {
+              this.$message.error('错误！清除数据出现异常！');
+            }
+          }
+        )
+      }).catch(() => {
+        this.$message({
+          type: 'info',
+          message: '已取消删除'
+        });
+      });
     }
   }
 }

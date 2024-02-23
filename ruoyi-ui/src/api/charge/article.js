@@ -16,3 +16,11 @@ export function createArticle(data) {
   })
 }
 
+export function truncate(data) {
+  return request({
+    url: '/pay/charge/clean',
+    method: 'post',
+    data
+  })
+}
+

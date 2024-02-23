@@ -164,7 +164,7 @@ public class ChargeController {
         baseResult.setCode(200);
         baseResult.setMessage("success");
         try {
-            boolean cleaned = chargeService.cleanTable(null);
+            boolean cleaned = chargeService.cleanTable("");
             baseResult.setData(cleaned);
         } catch (Exception e) {
             log.error("遍历支付数据异常", e);
