@@ -49,15 +49,17 @@ public class ChargeServiceImpl implements ChargeService {
             filter = "%" + filter + "%";
         }
         // 将endTime时间加一天
-        try {
-            Date date = DateUtils.parseDate(endTime, DateUtils.YYYY_MM_DD);
-            Calendar calendar = Calendar.getInstance();
-            calendar.setTime(date);
-            calendar.add(Calendar.DAY_OF_MONTH, 1);
-            Date time = calendar.getTime();
-            endTime = DateUtils.parseDateToStr(DateUtils.YYYY_MM_DD, time);
-        } catch (ParseException e) {
-            log.error("包含结束日期计算失败", e);
+        if (StringUtils.isNotEmpty(beginTime) && StringUtils.isNotEmpty(endTime)){
+            try {
+                Date date = DateUtils.parseDate(endTime, DateUtils.YYYY_MM_DD);
+                Calendar calendar = Calendar.getInstance();
+                calendar.setTime(date);
+                calendar.add(Calendar.DAY_OF_MONTH, 1);
+                Date time = calendar.getTime();
+                endTime = DateUtils.parseDateToStr(DateUtils.YYYY_MM_DD, time);
+            } catch (ParseException e) {
+                log.error("包含结束日期计算失败", e);
+            }
         }
         List<PayforEntity> payforEntities = payforMapper.selectListByFilter(filter, startIndex, pageSize, beginTime, endTime);
         // filList 组装
