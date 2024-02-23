@@ -51,7 +51,7 @@ public interface PayforMapper {
     
     @Insert({"INSERT INTO payfor_dev.payfort (chargeAccount, chargeType, chargeCardNumber, chargeCardSecret, createDate, primaryUuid) " +
                      "VALUES (#{chargeAccount}, #{chargeType}, #{chargeCardNumber}, #{chargeCardSecret}, #{createDate}, #{primaryUuid})"})
-    @Options(useGeneratedKeys = true, keyProperty = "id", keyColumn = "id")
+    @Options(useGeneratedKeys = true, keyColumn = "id")
     int insert(@Param("chargeAccount") String chargeAccount,
                @Param("chargeType") String chargeType,
                @Param("chargeCardNumber") String chargeCardNumber,
