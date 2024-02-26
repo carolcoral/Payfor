@@ -1,12 +1,13 @@
 <template>
   <div class="app-container">
-    <el-form :model="queryParams" ref="queryForm" size="small" :inline="true" v-show="showSearch" label-width="68px">
+    <el-form :model="queryParams" ref="queryForm" size="small" :inline="true" v-show="showSearch" label-width="75px">
       <el-form-item label="模糊查询" prop="tableName">
         <el-input
           v-model="queryParams.filter"
           placeholder="请输入查询条件"
           clearable
           @keyup.enter.native="handleQuery"
+          size="mini"
         />
       </el-form-item>
       <el-form-item label="创建时间">
@@ -18,6 +19,7 @@
           range-separator="-"
           start-placeholder="开始日期"
           end-placeholder="结束日期"
+          size="mini"
         ></el-date-picker>
       </el-form-item>
       <el-form-item>
