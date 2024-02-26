@@ -118,7 +118,12 @@
         prop="chargeType"
         :show-overflow-tooltip="true"
         min-width="120"
-      />
+      >
+        <template slot-scope="{row}">
+          <el-tag type="success" v-if="row.chargeType === 'xiechengchongzhi'">携程充值</el-tag>
+          <el-tag v-if="row.chargeType === 'youkachongzhi'">油卡充值</el-tag>
+        </template>
+      </el-table-column>
       <el-table-column
         label="充值账户"
         align="center"
