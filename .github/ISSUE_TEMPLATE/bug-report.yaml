@@ -1,0 +1,79 @@
+name: Bug Report
+description: File a bug report
+title: "[Bug][date] - [title] "
+labels: ["bug", "triage"]
+projects: []
+assignees:
+  - carolcoral
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time to fill out this bug report!
+  - type: dropdown
+    id: period
+    attributes:
+      label: 周期
+      description: 当前Bug期望解决的有效周期范围?
+      options:
+        - 20240219 - 20240223
+        - 20240226 - 20240301 (Default)
+        - 20240304 - 20240308
+        - 20240311 - 20240315
+        - 20240318 - 20240322
+        - 20240325 - 20240329
+      default: 1
+    validations:
+      required: true
+  - type: dropdown
+    id: version
+    attributes:
+      label: 版本号
+      description: 当前你运行的程序版本号?
+      options:
+        - 1.0.0 (Default)
+        - 1.0.1
+      default: 0
+    validations:
+      required: true
+  - type: input
+    id: website
+    attributes:
+      label: 网站地址
+      description: 当前可以在线访问的网站地址?
+      placeholder: ex. https://test.domain.com
+    validations:
+      required: false
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: 问题描述?
+      description: 请具体描述大概出现了什么问题，如果有截图请一并附上?
+      placeholder: Tell us what you see!
+      value: "A bug happened!"
+    validations:
+      required: true
+  - type: dropdown
+    id: browsers
+    attributes:
+      label: 哪个浏览器出现的问题?
+      multiple: true
+      options:
+        - Firefox
+        - Chrome
+        - Safari
+        - Microsoft Edge
+  - type: textarea
+    id: logs
+    attributes:
+      label: 日志输出
+      description: 请复制粘贴输出的日志. This will be automatically formatted into code, so no need for backticks.
+      render: shell
+  - type: checkboxes
+    id: terms
+    attributes:
+      label: Code of Conduct
+      description: By submitting this issue, you agree to follow our [Code of Conduct](https://example.com)
+      options:
+        - label: I agree to follow this project's Code of Conduct
+          required: true
