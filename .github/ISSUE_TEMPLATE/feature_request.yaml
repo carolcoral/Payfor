@@ -1,0 +1,52 @@
+name: Feature Report
+description: File a feature report
+title: "[Feature][date] - [title] "
+labels: ["feature", "triage"]
+projects: []
+assignees:
+  - carolcoral
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time to fill out this feature report!
+  - type: dropdown
+    id: period
+    attributes:
+      label: 周期
+      description: 当前特性期望解决的有效周期范围?
+      options:
+        - 20240219 - 20240223
+        - 20240226 - 20240301 (Default)
+        - 20240304 - 20240308
+        - 20240311 - 20240315
+        - 20240318 - 20240322
+        - 20240325 - 20240329
+      default: 1
+    validations:
+      required: true
+  - type: input
+    id: website
+    attributes:
+      label: 网站地址
+      description: 特性效果可以在线访问的网站地址（如果有）?
+      placeholder: ex. https://test.domain.com
+    validations:
+      required: false
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: 特性描述?
+      description: 请具体描述期望的新特性，如果有截图请一并附上?
+      placeholder: Tell us what you see!
+      value: "A feature happened!"
+    validations:
+      required: true
+  - type: checkboxes
+    id: terms
+    attributes:
+      label: Code of Conduct
+      description: By submitting this issue, you agree to follow our [Code of Conduct](https://example.com)
+      options:
+        - label: I agree to follow this project's Code of Conduct
+          required: true
